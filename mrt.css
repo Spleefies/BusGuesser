@@ -18,6 +18,15 @@
     border-top: 0.125rem solid rgb(255, 255, 255, 0.5);
     border-left: 0.125rem solid rgb(255, 255, 255, 0.5);
 }
+.card{
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.76);
+    display: none;
+      top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 ::-webkit-scrollbar{
     display: none;
 }
@@ -49,4 +58,16 @@ button:hover{
     box-shadow: 0 0 1em;
     border-top: 0.125rem solid rgb(255, 255, 255, 0.5);
     border-left: 0.125rem solid rgb(255, 255, 255, 0.5);
+}
+img{
+    max-width: 67vw;
+    max-height: 67vh;
+}
+img[src="cross.svg"]{
+    height: 2em;
+    float: right;
+    transition: 0.34s all;
+}
+img[src="cross.svg"]:hover{
+    transform: scale(1.1)
 }

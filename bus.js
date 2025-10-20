@@ -13,7 +13,7 @@ map.on('load', async () => {
       type: 'geojson',
       data: stopsData
     });
-    
+
     map.addLayer({
       id: 'bus-stops-layer',
       type: 'circle',
@@ -54,11 +54,9 @@ map.on('load', async () => {
 
     map.on('mouseenter', 'bus-stops-layer', () => map.getCanvas().style.cursor = 'pointer');
     map.on('mouseleave', 'bus-stops-layer', () => map.getCanvas().style.cursor = '');
+    console.log(stopsData.features.find(f => f.id === "17191"))
   } catch (err) {
     console.error('Error loading stops:', err);
   }
 });
-
-function log() {
-  console.log("kodwaodja")
-}
+const card = document.querySelector(".card")

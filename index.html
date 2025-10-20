@@ -12,8 +12,10 @@
 </head>
 <body class="container">
     <div id="map"></div>
-    <div class="topbar"><b>PTGuesser</b> | View image</div>
+    <div class="topbar"><b>PTGuesser</b> | <span onclick="card.style.display = 'block'">View image</span></div>
+    <div class="topbar card"><img src="87.jpg"><img src="cross.svg" onclick="card.style.display = 'none'"></div>
+
     <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
     <script src="bus.js"></script>
 </body>
-</html>
+</html> 
