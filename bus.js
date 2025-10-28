@@ -7,6 +7,7 @@ const map = new maplibregl.Map({
   center: [103.818108, 1.3431684],
   zoom: 11
 });
+
 map.on('load', async () => {
   try {
     const res = await fetch('https://data.busrouter.sg/v1/stops.min.geojson');
