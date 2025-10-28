@@ -77,5 +77,7 @@ async function getImgUrl() {
   }
 }
 getImgUrl().then(url => console.log(url))
-const mainimg = document.querySelector("#mainimg")
-mainimg.src = getImgUrl()
+const mainimg = document.querySelector("#mainimg");
+getImgUrl().then(url => {
+  mainimg.src = url;
+});
