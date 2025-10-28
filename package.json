@@ -1,10 +1,11 @@
 {
   "name": "ptguesser",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild bus.js --bundle --outfile=smrt/mrt.js --watch --minify"
+    "build": "esbuild bus.js --bundle --outfile=smrt/mrt.js --watch --minify",
+    "sassy": "sass --watch bus.scss smrt/bus.css --style compressed"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/Spleefies/ptguesser#readme",
   "dependencies": {
-    "maplibre-gl": "^5.9.0"
+    "maplibre-gl": "^5.9.0",
+    "sass": "^1.93.2"
   }
 }
