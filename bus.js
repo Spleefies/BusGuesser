@@ -1,22 +1,22 @@
-import maplibregl from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
+import maplibregl from 'maplibre-gl'
+import 'maplibre-gl/dist/maplibre-gl.css'
 
 const map = new maplibregl.Map({
   container: 'map',
   style: 'https://api.maptiler.com/maps/satellite/style.json?key=cRXF0Q8VCbwDnBOhhfNP',
   center: [103.818108, 1.3431684],
   zoom: 11
-});
+})
 
 map.on('load', async () => {
   try {
-    const res = await fetch('https://data.busrouter.sg/v1/stops.min.geojson');
-    const stopsData = await res.json();
+    const res = await fetch('https://data.busrouter.sg/v1/stops.min.geojson')
+    const stopsData = await res.json()
 
     map.addSource('bus-stops', {
       type: 'geojson',
       data: stopsData
-    });
+    })
     
     map.addLayer({
       id: 'bus-stops-layer',
@@ -37,31 +37,31 @@ map.on('load', async () => {
         'circle-stroke-color': '#fff'
       },
       filter: ['==', '$type', 'Point']
-    });
+    })
 
     map.on('click', 'bus-stops-layer', (e) => {
-      const feature = e.features[0];
-      const coords = feature.geometry.coordinates.slice();
-      const props = feature.properties || {};
+      const feature = e.features[0]
+      const coords = feature.geometry.coordinates.slice()
+      const props = feature.properties || {}
       
       const html = `
           <strong>${props.name || 'Unknown'}</strong> <br>
           <strong>Stop ID:</strong> ${props.number || 'N/A'}<br>
           <button onclick="console.log(${props.number})">Lock in</button>
-        `;
+        `
       
       new maplibregl.Popup()
       .setLngLat(coords)
       .setHTML(html)
-      .addTo(map);
-    });
+      .addTo(map)
+    })
 
-    map.on('mouseenter', 'bus-stops-layer', () => map.getCanvas().style.cursor = 'pointer');
-    map.on('mouseleave', 'bus-stops-layer', () => map.getCanvas().style.cursor = '');
+    map.on('mouseenter', 'bus-stops-layer', () => map.getCanvas().style.cursor = 'pointer')
+    map.on('mouseleave', 'bus-stops-layer', () => map.getCanvas().style.cursor = '')
   } catch (err) {
-    console.error('Error loading stops:', err);
+    console.error('Error loading stops:', err)
   }
-});
+})
 
 import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = 'https://xowfiaodrlbghhoobmbm.supabase.co'
@@ -77,7 +77,5 @@ async function getImgUrl() {
   }
 }
 getImgUrl().then(url => console.log(url))
-const mainimg = document.querySelector("#mainimg");
-getImgUrl().then(url => {
-  mainimg.src = url;
-});
+const mainimg = document.querySelector("#mainimg")
+getImgUrl().then(url => {mainimg.src = url})

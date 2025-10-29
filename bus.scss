@@ -1,10 +1,11 @@
-$glass:light-dark(rgb(255, 255, 255, 0.5),rgb(0,0,0,0.5));
+:root{color-scheme: light dark;}
+$glass:light-dark(rgb(255, 255, 255, 0.6),rgb(0,0,0,0.6));
+::-webkit-scrollbar{display: none;}
 html, body, #map{
     width: 100%;
     height: 100%;
     margin: 0;
 }
-:root{color-scheme: light dark;}
 .maplibregl-ctrl-bottom-right {display: none}
 * {
     font-family: "Quicksand", sans-serif;
@@ -20,6 +21,7 @@ button{
     font-weight: 600;
     transition: all 0.67s;
     &:hover{background-color: greenyellow}
+    color: #000;
 }
 .maplibregl-popup-content{
     border-radius: 0.67rem;
@@ -34,27 +36,28 @@ button{
     z-index: 1;
 }
 .img{
+    right: 0;
     border-radius: 0.67rem;
-    height: 90vh;
-    transform: translateY(-90vh);
+    max-width: 45vw;
+    max-height: 90vh;
+    transform: translateX(35vw);
     transition: all 0.67s;
     margin: 1em;
-    &:hover{transform: translateY(0)}
+    &:hover{transform: translateX(0)}
 }
 .icon{
     height: 2em;
     margin: 0.34em;
 }
 .sidebar {
-    position: absolute;
-    right: 0;
+    left: 0;
     background-color: $glass;
     backdrop-filter: blur(0.3rem);
-    border-radius: 0.67em 0 0 0.67em;
-    box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
-    height: 100vh;
-    border-top: 0.125rem solid $glass;
-    border-left: 0.125rem solid $glass;
+    border-radius: 0 0.67em 0.67em 0;
+    box-shadow: 0 0 1em #000;
+    height: 99.7vh;
+    border-color: $glass;
+    border-style: solid solid none none;
     cursor: pointer;
 }
 .maplibregl-popup-anchor-top .maplibregl-popup-tip,
