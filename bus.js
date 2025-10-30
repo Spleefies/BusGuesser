@@ -67,15 +67,17 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = 'https://xowfiaodrlbghhoobmbm.supabase.co'
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhvd2ZpYW9kcmxiZ2hob29ibWJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3OTI4MDQsImV4cCI6MjA3NjM2ODgwNH0.eOze-pW1rD7TN9-fR7FTA4QMcG3Mcip7RIZmAInQ7z0"
 const supabase = createClient(supabaseUrl, supabaseKey)
-
+let imgNo
 async function getImgUrl() {
   const { data, error } = await supabase.storage.from('Images').list()
   if (error) {
     console.error(error)
   } else {
-    return supabase.storage.from('Images').getPublicUrl(data[Math.floor(Math.random()*data.length)].name).data.publicUrl
+    imgName = data[Math.floor(Math.random()*data.length)].name
+    console.log(imgName)
+    imgNo = imgName.slice(0,3)
+    return supabase.storage.from('Images').getPublicUrl(imgName).data.publicUrl
   }
 }
-getImgUrl().then(url => console.log(url))
 const mainimg = document.querySelector("#mainimg")
 getImgUrl().then(url => {mainimg.src = url})
