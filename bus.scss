@@ -2,6 +2,7 @@
 $glass:light-dark(rgb(255, 255, 255, 0.6),rgb(0,0,0,0.6));
 ::-webkit-scrollbar{display: none;}
 html, body, #map{
+    overflow: hidden;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -40,7 +41,7 @@ button{
     border-radius: 0.67rem;
     max-width: 45vw;
     max-height: 90vh;
-    transform: translateX(35vw);
+    transform: translateX(100%);
     transition: all 0.67s;
     margin: 1em;
     &:hover{transform: translateX(0)}
