@@ -36,6 +36,18 @@ button{
     position: absolute;
     z-index: 1;
 }
+.search{
+    border-radius: 1em;
+    background-color: $glass;
+    backdrop-filter: blur(0.3rem);
+    box-shadow: 0 0 1em #000;
+    border-color: $glass;
+    top: 21vh;
+    left: 35vw;
+    padding: 0.67em;
+    display: none;
+}
+input{border-radius: 1em}
 .img{
     right: 0;
     border-radius: 0.67rem;
@@ -69,3 +81,4 @@ button{
 .maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {border-top-color: $glass}
 .maplibregl-popup-anchor-left .maplibregl-popup-tip {border-right-color: $glass}
 .maplibregl-popup-anchor-right .maplibregl-popup-tip {border-left-color: $glass}
+@media (prefers-color-scheme: dark){.mono{filter: invert(1);}}

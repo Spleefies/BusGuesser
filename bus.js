@@ -1,4 +1,4 @@
-import maplibregl, { LngLat } from 'maplibre-gl'
+import maplibregl, { LngLat, Marker } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
 const map = new maplibregl.Map({
@@ -109,10 +109,12 @@ async function loadStops() {
       'line-cap': 'round'
     },
     'paint': {
-      'line-color': '#248623',
+      'line-color': '#3fb1ce',
       'line-width': 8
     }
   });
+  let ansMarker = new Marker().setLngLat(getLngLatById(ans.stop_no)).addTo(map)
+  let guessMarker = new Marker().setLngLat(getLngLatById(guess)).addTo(map)
   map.flyTo({center: getLngLatById(ans.stop_no), zoom: 16, speed:0.67})
 }
 }
@@ -126,3 +128,9 @@ function getLngLatById(id) {
   const feature = stopsData.features.find(f => f.id === id)
   return feature?.geometry.coordinates
 }
+const searchInput = document.querySelector(".search input")
+searchInput.addEventListener("change", () => {
+  console.log(searchInput.value)
+  map.flyTo({center: getLngLatById(searchInput.value), zoom: 20})
+  searchInput.parentElement.style.display = "none"
+})
