@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild bus.js --bundle --outfile=smrt/mrt.js --watch --minify",
-    "sassy": "sass --watch bus.scss smrt/bus.css --style compressed"
+    "build": "esbuild bus.js --bundle --outfile=smrt/play/mrt.js --watch --minify",
+    "sassy": "sass --watch bus.scss smrt/play/bus.css --style compressed"
   },
   "repository": {
     "type": "git",

@@ -7,7 +7,7 @@ const map = new maplibregl.Map({
   center: [103.818108, 1.3431684],
   zoom: 11
 })
-let stopsData
+let stopsData, popup
 map.on('load', async () => {
   try {
     const res = await fetch('https://data.busrouter.sg/v1/stops.min.geojson')
@@ -48,7 +48,7 @@ map.on('load', async () => {
       <strong>Stop ID:</strong> <span id="stopNo">${props.number || 'N/A'}</span><br>
       <button id="lockIn">Lock in</button>
       `
-      new maplibregl.Popup().setLngLat(coords).setHTML(html).addTo(map)
+      popup = new maplibregl.Popup().setLngLat(coords).setHTML(html).addTo(map)
       updateButton()
     })
     
@@ -69,7 +69,6 @@ async function getImgUrl() {
   } else {
     imgName = data[Math.floor(Math.random()*data.length)].name
     imgNo = imgName.slice(0,3)
-    console.log(imgNo)
     return supabase.storage.from('Images').getPublicUrl(imgName).data.publicUrl
   }
 }
@@ -77,14 +76,11 @@ const mainimg = document.querySelector("#mainimg")
 getImgUrl().then(url => {mainimg.src = url})
 async function loadStops() {
   const { data, error } = await supabase.from('stops').select()
-  
   if (error) console.error(error) 
     else {
     let ans = data.find(i => i.img_no == imgNo)
-    console.log(ans.stop_no,guess)
     let guessLocation = new LngLat(...getLngLatById(guess))
     let ansLocation = new LngLat(...getLngLatById(ans.stop_no))
-    console.log(guessLocation.distanceTo(ansLocation))
     map.addSource('route', {
       'type': 'geojson',
       'data': {
@@ -113,9 +109,12 @@ async function loadStops() {
       'line-width': 8
     }
   });
-  let ansMarker = new Marker().setLngLat(getLngLatById(ans.stop_no)).addTo(map)
-  let guessMarker = new Marker().setLngLat(getLngLatById(guess)).addTo(map)
+  new Marker().setLngLat(getLngLatById(ans.stop_no)).addTo(map)
+  new Marker().setLngLat(getLngLatById(guess)).addTo(map)
+  popup.remove()
   map.flyTo({center: getLngLatById(ans.stop_no), zoom: 16, speed:0.67})
+  searchDiv.style.display = 'block'
+  searchDiv.innerHTML = `Your guess was <b>${Math.floor(guessLocation.distanceTo(ansLocation))/1000}</b>km from the actual location`
 }
 }
 function updateButton(){
@@ -129,8 +128,8 @@ function getLngLatById(id) {
   return feature?.geometry.coordinates
 }
 const searchInput = document.querySelector(".search input")
+const searchDiv = document.querySelector(".search")
 searchInput.addEventListener("change", () => {
-  console.log(searchInput.value)
   map.flyTo({center: getLngLatById(searchInput.value), zoom: 20})
-  searchInput.parentElement.style.display = "none"
+  searchDiv.style.display = "none"
 })
