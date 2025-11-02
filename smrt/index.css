@@ -4,7 +4,7 @@ span{font-size: min(20vw,30vh)}
 img{height: min(20vw,30vh)}
 button{font-size: min(18vw,20vh)}
 button span{
-    font-family: Arial;
+    font-family: sans-serif;
     font-variant-emoji: text;
     font-size: min(18vw,20vh);
 }
