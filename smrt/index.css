@@ -1,1 +1,5 @@
-html, body{overflow: scroll}
+@import url(play/bus.css);
+html, body{overflow: scroll;text-align: center;}
+span{font-size: 8em}
+img{height: 8em}
+button{font-size: 7em;}
