@@ -1,1 +1,0 @@
-Google icons:start with default settings, then enable fill and change to rounded. 
