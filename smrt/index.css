@@ -1,6 +1,6 @@
 @import url(play/bus.css);
 html, body{overflow: scroll;text-align: center;}
-span{font-size: min(20vw,30vh)}
-img{height: min(20vw,30vh)}
-.play{height: min(18vw,20vh);transform: translateY(10%);}
-button{font-size: min(18vw,20vh)}
+span{font-size: min(20vw,30vh,5em)}
+img{height: min(20vw,30vh,5em)}
+.play{height: min(18vw,20vh,4em);transform: translateY(10%);}
+button{font-size: min(18vw,20vh,4em)}
