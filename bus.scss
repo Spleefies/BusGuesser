@@ -58,6 +58,7 @@ input{border-radius: 1em}
     transition: all 0.67s;
     margin: 1em;
     &:hover{transform: translateX(0)}
+    box-shadow: 0 0 0.5em #000;
 }
 .icon{
     height: 2em;

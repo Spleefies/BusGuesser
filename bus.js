@@ -114,7 +114,8 @@ async function loadStops() {
   popup.remove()
   map.flyTo({center: getLngLatById(ans.stop_no), zoom: 16, speed:0.67})
   searchDiv.style.display = 'block'
-  searchDiv.innerHTML = `Your guess was <b>${Math.floor(guessLocation.distanceTo(ansLocation))/1000}</b>km from the actual location<br><button onclick="window.location.reload()">Play again <img src="../icons/play.svg"></button>`
+  score = Math.floor(500-(guessLocation.distanceTo(ansLocation)*0.025))
+  searchDiv.innerHTML = `Your guess was <b>${Math.floor(guessLocation.distanceTo(ansLocation))/1000}</b>km from the actual location<br><b>Score: ${score}<br><b><button onclick="window.location.reload()">Play again <img src="../icons/play.svg"></button>`
 }
 }
 function updateButton(){
